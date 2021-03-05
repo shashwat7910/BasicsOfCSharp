@@ -23,9 +23,9 @@ namespace BasicsOfCSharp
             else
                 Console.WriteLine("File doesn't exist");
             StreamWriter w = File.CreateText(filename);
-            w.WriteLine("shashwat 22 maths");
-            w.WriteLine("ankit 22 physics");
-            w.WriteLine("onkar 22 chemistry");
+            w.WriteLine("Name: shashwat; Age: 22; Dept: maths");
+            w.WriteLine("Name: ankit; Age: 22 ; Dept: physics");
+            w.WriteLine("Name: onkar; Age: 22; Dept: chemistry");
             w.Close();
 
 
@@ -39,8 +39,35 @@ namespace BasicsOfCSharp
             else
             {
                 Console.WriteLine("File exists");
-                string content = File.ReadAllText(filename);
-                Console.WriteLine(content);
+                string[] content = File.ReadAllLines(filename);
+                for(int i = 1; i < content.Length - 1; i++)
+                {
+                    for(int j = 0; j < content.Length - 1 - i; j++)
+                    {
+                        if(content[j+1].CompareTo(content[j])<0)
+                        {
+                            string temp = content[j];
+                            content[j] = content[j + 1];
+                            content[j + 1] = temp;
+                        }
+                    }
+                }
+                foreach (string line in content) Console.WriteLine(line);
+                Console.WriteLine("Enter record to search");
+                string input = Console.ReadLine();
+                bool flag = true;
+                foreach(string line in content)
+                {
+                    if (line.Contains(input))
+                    {
+                        Console.WriteLine(line);
+                        flag = false;
+                        break;
+                    }
+                }
+                if (flag)
+                    Console.WriteLine("Record not found");
+                
             }
         }
     }
