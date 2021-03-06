@@ -12,7 +12,7 @@ namespace Algorithms.Searching
             Console.WriteLine("Enter number to search");
             string input = Console.ReadLine();
             int numbertosearch = Convert.ToInt32(input);
-            for(int)
+            
         }
     }
 }

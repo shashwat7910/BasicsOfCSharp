@@ -6,8 +6,8 @@ namespace BasicsOfCSharp
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
-            Fileprogram.Do();
+            
+            Fileprogram2.Do();
         }
     }
 }
