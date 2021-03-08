@@ -1,0 +1,29 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace OOPSConcepts.Polymorphism
+{
+    class Middleschoolgradecard :  BasicGradeCard
+    {
+        public int maths { get; set; }
+        public int english { get; set; }
+        public int secondlanguage { get; set; }
+        public int geography{ get; set; }
+        public int history { get; set; }
+
+        public Middleschoolgradecard()
+        {
+            this.maths = 0;
+            this.english = 0;
+            this.secondlanguage = 0;
+            this.geography = 0;
+            this.history = 0;
+        }
+        public override int getTotalmarks()
+        {
+            return this.maths + this.english + this.secondlanguage + this.geography + this.history;
+        }
+
+    }
+}
