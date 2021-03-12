@@ -42,7 +42,7 @@ namespace PhaseEnd
             foreach (string s in arr)
             {
                 string[] arr2 = s.Split(" ");
-                Console.Write("Name: " + arr2[0] + "; " + "Age: " + arr2[1] + "; " + "Department: " + arr2[2]+"; "+"Id: "+arr2[3]);
+                Console.Write("Name: " + arr2[0] + "; " + "Age: " + arr2[1] + "; " + "Department: " + arr2[2] + "; " + "Id: " + arr2[3]);
                 Console.Write("\n");
             }
         }
@@ -55,18 +55,51 @@ namespace PhaseEnd
             StreamWriter w = new StreamWriter("newfile");
             int count = 0;
             string[] lines = File.ReadAllLines(path);
-            foreach (string  s in lines)
+            Console.WriteLine("Press A for updating all attributes");
+            Console.WriteLine("Press B for updating a specific attribute");
+            string choice = Console.ReadLine();
+            string[] attributes = new string[] { "Name", "Age", "Department", "Id" };
+            if (choice.Equals("A"))
             {
-                if (s.Contains(name))
+                foreach (string s in lines)
                 {
-                    Console.WriteLine("Enter new details separated by space");
-                    string record = Console.ReadLine();
-                    lines[count] = record;
+                    if (s.Contains(name))
+                    {
+                        Console.WriteLine("Enter new details separated by space");
+                        string record = Console.ReadLine();
+                        lines[count] = record;
+                    }
+                    else
+                        count++;
                 }
-                else
-                    count++;
+                File.WriteAllLines(path, lines);
             }
-            File.WriteAllLines(path, lines);
+            else
+            {
+                Console.WriteLine("Enter the attribute you want to update");
+                string attribute = Console.ReadLine();
+                int j = 0;
+                for (int i = 0; i < 4; i++)
+                {
+                    if (attributes[i].Equals(attribute))
+                    {
+                        j = i;
+                        break;
+                    }
+                }
+                Console.WriteLine("Enter the new value");
+                string updatedvalue = Console.ReadLine();
+                for(int i=0;i<lines.Length;i++)
+                {
+                    if (lines[i].Contains(name))
+                    {
+                        string[] array = lines[i].Split(" ");
+                        array[j] = updatedvalue;
+                        lines[i] = array[0]+" "+array[1]+" "+array[2]+" "+array[3];
+                    }
+                }
+                File.WriteAllLines(path, lines);
+            }
         }
     }
 }
